@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS  # Importa la extensión de CORS
 import requests
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://decretos.42web.io"])  # Permitir solicitudes desde el dominio del frontend
+CORS(app, origins=["http://decretos.42web.io"])  # Aplica CORS a tu dominio específico
 
-LLAMA_API_KEY = 'LA-ce8287c47a2943b19e9ff328f027d0050b716e1c93e3471fa76a3c5de2bd663f'
+# Coloca tu API Key válida aquí
+LLAMA_API_KEY = os.getenv('LLAMA_API_KEY')  # Mantén segura tu API Key
 
 @app.route('/generate', methods=['POST'])
 def generate_decree():
@@ -37,11 +38,7 @@ def generate_decree():
         return jsonify({"error": "Failed to generate response"}), llama_response.status_code
 
     llama_data = llama_response.json()
-    return jsonify({"decreeText": llama_data.get('choices', [{}])[0].get('message', {}).get('content', '')})
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    return jsonify(llama_data)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
