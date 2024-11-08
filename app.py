@@ -38,5 +38,6 @@ def generate_decree():
     return jsonify(llama_data)
 
 if __name__ == '__main__':
+    # Solo una llamada a app.run()
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(debug=True, host="0.0.0.0", port=port)
