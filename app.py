@@ -5,8 +5,8 @@ import os
 
 # Configuración de la aplicación Flask y CORS
 app = Flask(__name__)
-CORS(app, origins=["http://decretos.42web.io"])  # Habilita CORS solo para tu dominio específico
 
+CORS(app, resources={r"/generate": {"origins": "http://decretos.42web.io"}})
 # Obtén tu API Key desde una variable de entorno para mayor seguridad
 LLAMA_API_KEY = os.getenv('LLAMA_API_KEY')  # Asegúrate de que esta variable esté configurada en tu entorno
 
