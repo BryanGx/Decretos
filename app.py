@@ -4,7 +4,7 @@ import requests
 import os
 
 app = Flask(__name__)
-CORS(app)  # Aplica CORS a toda la aplicación
+CORS(app, origins=["http://decretos.42web.io"])  # Aplica CORS a tu dominio específico
 
 LLAMA_API_KEY = 'LA-ce8287c47a2943b19e9ff328f027d0050b716e1c93e3471fa76a3c5de2bd663f'
 
@@ -37,11 +37,6 @@ def generate_decree():
         return jsonify({"error": "Failed to generate response"}), llama_response.status_code
 
     llama_data = llama_response.json()
-    return jsonify(llama_data)
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
     return jsonify(llama_data)
 
 if __name__ == '__main__':
