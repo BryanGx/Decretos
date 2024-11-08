@@ -80,15 +80,15 @@
         document.getElementById('decree-image').innerHTML = '<div class="animate-pulse">Creando imagen...</div>';
 
         try {
-            const response = await fetch('https://decretos.onrender.com/generate', {  // Cambio aquí: API Flask en el servidor
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    prompt: promptInput
-                })
-            });
+          const response = await fetch('https://decretos.onrender.com', {  // Cambio aquí a la API en Render
+            method: 'POST',
+            headers: {
+        'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            prompt: promptInput
+            })
+        });
 
             const data = await response.json();
             
