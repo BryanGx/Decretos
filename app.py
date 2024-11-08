@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Importa CORS
 import requests
 import os
 
 app = Flask(__name__)
+
+# Aplica CORS permitiendo solo tu dominio específico
+CORS(app, origins=["http://decretos.42web.io"])
 
 LLAMA_API_KEY = 'LA-ce8287c47a2943b19e9ff328f027d0050b716e1c93e3471fa76a3c5de2bd663f'
 
@@ -39,4 +43,6 @@ def generate_decree():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(debug=
+    app.run(
+True, host="0.0.0.0", port=port)
