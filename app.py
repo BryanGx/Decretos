@@ -6,7 +6,7 @@ import os
 # Configuración de la aplicación Flask y CORS
 app = Flask(__name__)
 
-CORS(app, resources={r"/generate": {"origins": "http://decretos.42web.io"}})
+CORS(app, resources={r"/generate": {"origins": "https://decretos.onrender.com"}})
 # Obtén tu API Key desde una variable de entorno para mayor seguridad
 LLAMA_API_KEY = os.getenv('LLAMA_API_KEY')  # Asegúrate de que esta variable esté configurada en tu entorno
 
@@ -51,6 +51,4 @@ def generate_decree():
 
 # Inicia el servidor
 if __name__ == '__main__':
-    # Define el puerto de la aplicación desde variables de entorno, con valor predeterminado 5000
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(debug=True, host="0.0.0.0")
